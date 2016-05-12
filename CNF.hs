@@ -13,13 +13,12 @@ import Data.List
 --  (β ∨ σ) ∧ α  ≈ (β ∨ α) ∧ (σ ∨ α).
 
 dist :: Formula -> Formula
---dist (Not f)             = Not $ dist f
 dist (And f1 f2)         = And (dist f1) (dist f2)
 dist (Or f1 (And f2 f3)) = And (dist $ Or f1 f2) (dist $ Or f1 f3)
 dist (Or (And f1 f2) f3) = And (dist $ Or f1 f3) (dist $ Or f2 f3)
 dist (Or f1 f2)          = Or (dist f1) (dist f2)
-dist (Imp f1 f2)         = Imp (dist f1) (dist f2)
-dist (Biimp f1 f2) = And (Imp nf1 nf2) (Imp nf2 nf1)
+dist (Imp f1 f2)         = dist(Or (Not (dist f1)) (dist f2))
+dist (Biimp f1 f2) = dist(And (Imp nf1 nf2) (Imp nf2 nf1))
   where
     nf1, nf2 :: Formula
     nf1 = dist f1
@@ -56,7 +55,6 @@ remImp (Imp f1 f2)  = Or (Not $ remImp f1) (remImp f2)
 remImp (Exists x f) = Exists x (remImp f)
 remImp (Forall x f) = Forall x (remImp f)
 remImp formula      = formula
-
 
 -- DeMorgan laws and push operators inward using the logical equivalences
 --   ¬ (α ∧ β)) ≈ ¬ α ∨ ¬ β,
