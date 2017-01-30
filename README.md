@@ -1,10 +1,13 @@
-# PCNF
-Give one formula in FOL (first order logic) return a PCNF (prenex conjunctive normal form). </br>
-Name Author: Camilo Andrés Rodríguez Garzón. </br>
-Haskell versión: The Glorious Glasgow Haskell Compilation System, version 7.10.3 </br>
-HLint versión: HLint v1.9.32, (C) Neil Mitchell 2006-2016 </br>
+# Pcnf
+Camilo Andrés Rodríguez Garzón
 
-Syntactical Conventions:
+Pcnf is a Haskell program intends to provide a solution
+give one formula in FOL (first order logic) return a 
+PCNF (prenex conjunctive normal form).
+Haskell versión: The Glorious Glasgow Haskell Compilation System, version 7.10.3
+HLint versión: HLint v1.9.35, (C) Neil Mitchell 2006-2016
+
+### Syntactic Proposition
 
 The set of well-formed formulae is defined by the following grammar:
 
